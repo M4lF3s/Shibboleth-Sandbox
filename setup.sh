@@ -48,6 +48,7 @@ librarian-chef init
 
 echo "cookbook 'mint-apache',
   :git => 'https://github.com/mfraas64/Shibboleth-Sandbox',
+  :ref => 'cookbooks'
   :path => 'cookbooks/mint-apache'
 " >> Cheffile
 librarian-chef install
