@@ -44,3 +44,23 @@ mkdir /var/chef
 cd /var/chef
 gem install librarian-chef --no-ri --no-rdoc
 librarian-chef init
+
+
+echo "cookbook 'mint-apache',
+  :git => 'https://github.com/mfraas64/Shibboleth-Sandbox',
+  :path => 'cookbooks/mint-apache'
+" >> Cheffile
+librarian-chef install
+
+# ceckout chef-solo
+svn checkout https://github.com/mfraas64/Shibboleth-Sandbox/branches/chef-solo/chef /var/chef
+
+
+# change to the chef Directory and execute chef-solo
+cd /var/chef
+chef-solo -c solo.rb
+
+
+# Turn Off Firewall
+systemctl stop firewalld
+systemctl disable firewalld
